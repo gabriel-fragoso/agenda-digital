@@ -15,11 +15,14 @@ const EventModal = ({ isOpen, onRequestClose, fetchEvents }: any) => {
       return
     }
     try {
-      const response = await axios.post('http://localhost:3333/api/events', {
-        title,
-        start: start.toISOString(),
-        end: end.toISOString(),
-      })
+      const response = await axios.post(
+        'https://agenda-digital.onrender.com/api/events',
+        {
+          title,
+          start: start.toISOString(),
+          end: end.toISOString(),
+        },
+      )
       if (response.status === 200) {
         fetchEvents()
         onRequestClose()

@@ -10,7 +10,9 @@ const useSaveEvents = () => {
 
   const fetchEvents = async () => {
     try {
-      const result = await axios.get('http://localhost:3333/api/events')
+      const result = await axios.get(
+        'https://agenda-digital.onrender.com/api/events',
+      )
       setEvents(
         result.data.map((event: any) => ({
           ...event,
@@ -30,10 +32,13 @@ const useSaveEvents = () => {
   const onEventDrop = async (data: any) => {
     const { event, start, end } = data
     try {
-      await axios.patch(`http://localhost:3333/api/events/${event.id}`, {
-        start: start.toISOString(),
-        end: end.toISOString(),
-      })
+      await axios.patch(
+        `https://agenda-digital.onrender.com/api/events/${event.id}`,
+        {
+          start: start.toISOString(),
+          end: end.toISOString(),
+        },
+      )
       fetchEvents()
     } catch (error) {
       console.error('Failed to move event:', error)
@@ -43,10 +48,13 @@ const useSaveEvents = () => {
   const onEventResize = async (data: any) => {
     const { event, start, end } = data
     try {
-      await axios.patch(`http://localhost:3333/api/events/${event.id}`, {
-        start: start.toISOString(),
-        end: end.toISOString(),
-      })
+      await axios.patch(
+        `https://agenda-digital.onrender.com/api/events/${event.id}`,
+        {
+          start: start.toISOString(),
+          end: end.toISOString(),
+        },
+      )
       fetchEvents()
     } catch (error) {
       console.error('Failed to update event:', error)
