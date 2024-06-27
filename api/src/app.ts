@@ -7,7 +7,9 @@ import cors from '@fastify/cors'
 export const app = fastify()
 const prisma = new PrismaClient()
 
-app.register(cors)
+app.register(cors, {
+  origin: '*',
+})
 
 app.get('/api/events', async (request, reply) => {
   try {
